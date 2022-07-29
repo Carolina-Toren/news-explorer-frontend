@@ -1,0 +1,79 @@
+.navbar__hamburger-home {
+	border-bottom: 0;
+	margin: 16px 16px 22px;
+	padding: 3px 0 0 0;
+	justify-content: flex-start;
+	line-height: 56px;
+}
+
+.navbar__close-btn {
+	background-image: url('../../images/closeBTN.svg');
+}
+
+.navbar__hamburger-articles {
+	border-bottom: 0;
+	margin: 16px 16px 22px;
+	padding: 0;
+	justify-content: flex-start;
+	display: none;
+}
+.navbar__hamburger {
+	background-image: url('../../images/hamMenu.svg');
+	background-repeat: no-repeat;
+	cursor: pointer;
+	width: 24px;
+	height: 24px;
+	border: none;
+	background-color: transparent;
+	padding: 0;
+	margin: 16px 16px 16px auto;
+	grid-area: humburgerBTN;
+}
+.navbar__hamburger_dark {
+	background-image: url('../../images/hamMenuDark.svg');
+}
+.navbar__hamburger-close {
+	background-image: url('../../images/hamClose.svg');
+}
+
+.navbar__list-hamburger {
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	display: grid;
+	grid-template-areas:
+		'header  humburgerBTN'
+		'  authBTN authBTN '
+		'popupHamburger   popupHamburger ';
+
+	box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
+}
+.navbar__list-hamburger_active {
+	background-color: #1a1b22;
+}
+
+.navbar__hamburger-container {
+	background: #1a1b22;
+	z-index: 1;
+	width: 100%;
+	grid-area: popupHamburger;
+	padding-bottom: 24px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	opacity: 1;
+}
+
+.navbar__hamburger-auth {
+	padding: 16px 116px;
+	margin: 0 auto;
+	max-width: 288px;
+}
+
+.navbar__header-humburger {
+	grid-area: header;
+}
+
+.navbar__button_visible {
+	display: flex;
+}

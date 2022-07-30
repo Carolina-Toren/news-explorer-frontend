@@ -38,14 +38,14 @@
 .footer__list-icon {
 	cursor: pointer;
 }
-.footer__icon-github {
+.footer__icon_github {
 	background-image: url('../../images/github.svg');
 	width: 24px;
 	margin: 0 26px 0 40px;
 	background-repeat: no-repeat;
 }
 
-.footer__icon-facebook {
+.footer__icon_facebook {
 	background-image: url('../../images/fb.svg');
 	width: 24px;
 	background-repeat: no-repeat;
@@ -87,10 +87,10 @@
 	.footer__list {
 		margin: 0 11px 0 0;
 	}
-	.footer__icon-github {
+	.footer__icon_github {
 		margin: 0 26px 0 25px;
 	}
-	.footer__icon-facebook {
+	.footer__icon_facebook {
 		margin-right: 11px;
 	}
 }
@@ -121,11 +121,11 @@
 		width: 74px;
 	}
 
-	.footer__icon-github {
+	.footer__icon_github {
 		margin: 0;
 	}
 
-	.footer__icon-facebook {
+	.footer__icon_facebook {
 		margin: 0;
 	}
 }

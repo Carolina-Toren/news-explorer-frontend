@@ -94,7 +94,7 @@
 	margin: 0 5px 0 0;
 }
 
-.popup__registration-text {
+.popup_registration-text {
 	font-family: 'Roboto', sans-serif;
 	font-style: normal;
 	font-weight: 900;
@@ -103,7 +103,7 @@
 	margin: 43px 79px 14px 36px;
 }
 
-.popup__registration-link {
+.popup_registration-link {
 	font-family: 'Inter', sans-serif;
 	font-style: normal;
 	font-weight: 400;

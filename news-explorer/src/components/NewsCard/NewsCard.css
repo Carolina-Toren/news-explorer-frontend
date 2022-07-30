@@ -32,7 +32,7 @@
 
 	color: #000000;
 }
-.card__btn_hover {
+.card__btn_ishover {
 	padding: 11px 20px;
 	right: 69px;
 	width: fit-content;
@@ -44,33 +44,33 @@
 	visibility: visible;
 }
 
-.card__btn-unmarked:hover {
+.card__btn_unmarked:hover {
 	background-image: url('../../images/hover.svg');
 }
 
-.card__btn-unmarked {
+.card__btn_unmarked {
 	background-image: url('../../images/unmarked.svg');
 	width: 40px;
 	height: 40px;
 }
 
-.card__btn-marked {
+.card__btn_marked {
 	background-image: url('../../images/marked.svg');
 	width: 40px;
 	height: 40px;
 }
 
-.card__btn-delete {
+.card__btn_delete {
 	background-image: url('../../images/delete.svg');
 	width: 40px;
 	height: 40px;
 }
 
-.card__btn-delete:hover {
+.card__btn_delete:hover {
 	background-image: url('../../images/deleteHover.svg');
 }
 
-.card__btn-keyword {
+.card__btn_keyword {
 	left: 24px;
 	width: fit-content;
 	max-width: 150px;
@@ -139,7 +139,7 @@
 		top: 8px;
 		right: 8px;
 	}
-	.card__btn-keyword {
+	.card__btn_keyword {
 		left: 8px;
 		padding: 8px 20px;
 	}
@@ -179,7 +179,7 @@
 		top: 16px;
 		right: 16px;
 	}
-	.card__btn_hover.card__btn_visible {
+	.card__btn_ishover.card__btn_visible {
 		visibility: hidden;
 	}
 

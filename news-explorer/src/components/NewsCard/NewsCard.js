@@ -22,7 +22,7 @@ function NewsCard({
 	}
 
 	function handleBtnClick(e) {
-		if (isLoggedIn) e.target.classList.toggle('card__btn-marked');
+		if (isLoggedIn) e.target.classList.toggle('card__btn_marked');
 	}
 	return (
 		<li className='card'>
@@ -31,18 +31,18 @@ function NewsCard({
 				onMouseEnter={() => handleBtnHover(listType)}
 				onMouseLeave={() => handleBtnHover(listType)}
 				onClick={handleBtnClick}
-				className={`card__btn card__btn-unmarked ${
+				className={`card__btn card__btn_unmarked ${
 					listType === 'home' ? 'card__btn_visible' : ''
 				} `}
 			></button>
 			<button
 				onMouseEnter={() => handleBtnHover(listType)}
 				onMouseLeave={() => handleBtnHover(listType)}
-				className={`card__btn card__btn-delete ${
+				className={`card__btn card__btn_delete ${
 					listType === 'saved' ? 'card__btn_visible' : ''
 				} `}
 			></button>
-			<button className='card__btn card__btn_hover' ref={message}>
+			<button className='card__btn card__btn_ishover' ref={message}>
 				{listType === 'home' && !isLoggedIn
 					? 'Sign in to save articles'
 					: listType === 'saved'
@@ -50,7 +50,7 @@ function NewsCard({
 					: ''}
 			</button>
 			<button
-				className={`card__btn card__btn-keyword ${
+				className={`card__btn card__btn_keyword ${
 					listType === 'saved' ? 'card__btn_visible' : ''
 				} `}
 			>

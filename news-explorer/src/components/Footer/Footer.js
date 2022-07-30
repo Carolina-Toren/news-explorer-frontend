@@ -21,13 +21,13 @@ function Footer() {
 
 				<li className='footer__list-item footer__list-item_social'>
 					<a
-						className='footer__list-icon footer__icon-github'
+						className='footer__list-icon footer__icon_github'
 						href='https://github.com/Carolina-Toren'
 						target='_blank'
 						rel='noreferrer'
 					></a>
 					<a
-						className='footer__list-icon footer__icon-facebook'
+						className='footer__list-icon footer__icon_facebook'
 						href='https://www.facebook.com/Practicum.Israel.bootcamp/'
 						target='_blank'
 						rel='noreferrer'

@@ -28,9 +28,9 @@ function Header({
 				user={user}
 			/>
 			<h1 className='header__header'>What's going on in the world?</h1>
-			<div className='header__text'>
+			<p className='header__text'>
 				Find the latest news on any topic and save them in your personal account.
-			</div>
+			</p>
 			<SearchForm />
 		</header>
 	);

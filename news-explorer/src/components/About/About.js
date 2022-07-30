@@ -7,18 +7,18 @@ function About() {
 			<img className='about__img' src={aboutPic} alt='auther ' />
 			<div className='about__auther'>
 				<h2 className='about__header'>About the auther</h2>
-				<article className='about__article'>
+				<p className='about__text'>
 					Hello! My name is Carolina Toren, A Yandex Full Stack Boot Camp student, at
 					the final project stage.
-				</article>
-				<article className='about__article'>
+				</p>
+				<p className='about__text'>
 					Studied Practical Software Engineering at the Technological College in Beer
 					Sheva
-				</article>
+				</p>
 
-				<article className='about__article'>
+				<p className='about__text'>
 					looking for a Junior Full Stack Developer position.
-				</article>
+				</p>
 			</div>
 		</section>
 	);

@@ -6,7 +6,7 @@ function Main({
 	savedCardsData,
 	cardsData,
 	allCards,
-	onClick,
+	onClickMore,
 	setCardsToSave,
 	cardsToSave,
 }) {
@@ -16,7 +16,7 @@ function Main({
 			listType={'home'}
 			isLoggedIn={isLoggedIn}
 			cardsData={cardsData}
-			onClick={onClick}
+			onClick={onClickMore}
 			allCards={allCards}
 			setCardsToSave={setCardsToSave}
 			cardsToSave={cardsToSave}

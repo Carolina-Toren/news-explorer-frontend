@@ -11,6 +11,7 @@ function Header({
 	onHamburgerMenuClick,
 	isHambuergerMenuOpen,
 	isMobile,
+	user,
 }) {
 	return (
 		<header className='header'>
@@ -24,6 +25,7 @@ function Header({
 				onHamburgerMenuClick={onHamburgerMenuClick}
 				isHambuergerMenuOpen={isHambuergerMenuOpen}
 				isMobile={isMobile}
+				user={user}
 			/>
 			<h1 className='header__header'>What's going on in the world?</h1>
 			<div className='header__text'>

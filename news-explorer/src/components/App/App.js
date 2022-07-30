@@ -25,7 +25,7 @@ function App() {
 	const [isInfoTooltipOpen, setIsInfoTooltip] = useState(false);
 	const [isHambuergerMenuOpen, setIsHamburgerMenuOpen] = useState(false);
 	const [allCards, setAllCards] = useState(testData);
-	const [count, setCount] = useState(3);
+	const [count, setCount] = useState(6);
 	const [savedCardsData, setSaveAllCardsData] = useState(testData);
 	const [cardsData, setCardsData] = useState([]);
 	const [cardsToSave, setCardsToSave] = useState({});
@@ -60,10 +60,16 @@ function App() {
 	}
 
 	function handleSavedRoute() {
+		if (isHambuergerMenuOpen) {
+			setIsHamburgerMenuOpen(false);
+		}
 		navigate('/saved-news');
 	}
 
 	function handleHomeRoute() {
+		if (isHambuergerMenuOpen) {
+			setIsHamburgerMenuOpen(false);
+		}
 		navigate('/');
 	}
 
@@ -86,7 +92,7 @@ function App() {
 		handleScreenResize();
 	}, []);
 
-	function handlDisplayCards() {
+	function handleDisplayCards() {
 		let cardsToRender = [];
 		for (let i = 0; i < count; i++) {
 			if (testData[i]) {
@@ -132,13 +138,14 @@ function App() {
 									onHamburgerMenuClick={handleHamburgerClick}
 									isMobile={isMobile}
 									isHambuergerMenuOpen={isHambuergerMenuOpen}
+									user={currentUser}
 								/>
 								<Main
 									isLoggedIn={isLoggedIn}
 									savedCardsData={savedCardsData}
 									cardsData={cardsData}
 									allCards={allCards}
-									onClick={handlDisplayCards}
+									onClickMore={handleDisplayCards}
 									setAllCards={setAllCards}
 									setCardsToSave={setCardsToSave}
 									cardsToSave={cardsToSave}

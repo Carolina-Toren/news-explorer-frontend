@@ -22,7 +22,7 @@ function NewsCard({
 	}
 
 	function handleBtnClick(e) {
-		e.target.classList.toggle('card__btn-marked');
+		if (isLoggedIn) e.target.classList.toggle('card__btn-marked');
 	}
 	return (
 		<li className='card'>
@@ -31,7 +31,6 @@ function NewsCard({
 				onMouseEnter={() => handleBtnHover(listType)}
 				onMouseLeave={() => handleBtnHover(listType)}
 				onClick={handleBtnClick}
-				// ref={btn}
 				className={`card__btn card__btn-unmarked ${
 					listType === 'home' ? 'card__btn_visible' : ''
 				} `}

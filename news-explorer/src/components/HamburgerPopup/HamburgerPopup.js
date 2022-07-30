@@ -10,6 +10,7 @@ function HamburgerPopup({
 	isHambuergerMenuOpen,
 	isLoggedIn,
 	headerType,
+	user,
 }) {
 	return (
 		<>
@@ -25,7 +26,7 @@ function HamburgerPopup({
 						className={`navbar__button navbar__button-articles  navbar__hamburger-articles ${
 							isLoggedIn ? 'navbar__button_visible' : ''
 						} ${
-							headerType === 'articles'
+							headerType === 'articles' && !isHambuergerMenuOpen
 								? 'navbar__button_dark navbar__button-articles_dark'
 								: ''
 						} `}
@@ -42,7 +43,7 @@ function HamburgerPopup({
 								isLoggedIn ? 'navbar__button-text_logged ' : ''
 							}`}
 						>
-							{isLoggedIn ? 'elise' : 'Sign in'}
+							{isLoggedIn ? user.username : 'Sign in'}
 						</p>
 						<img
 							className={`navbar__button-img ${

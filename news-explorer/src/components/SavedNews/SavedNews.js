@@ -30,8 +30,13 @@ function SavedNews({
 				onHamburgerMenuClick={onHamburgerMenuClick}
 				isHambuergerMenuOpen={isHambuergerMenuOpen}
 				isMobile={isMobile}
+				user={user}
 			/>
-			<SavedNewsHeader isLoggedIn={isLoggedIn} user={user} />
+			<SavedNewsHeader
+				isLoggedIn={isLoggedIn}
+				user={user}
+				savedCardsData={savedCardsData}
+			/>
 			<NewsCardList
 				savedCardsData={savedCardsData}
 				listType={'saved'}

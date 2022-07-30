@@ -13,6 +13,7 @@ function Navagation({
 	onHamburgerMenuClick,
 	isHambuergerMenuOpen,
 	isMobile,
+	user,
 }) {
 	return (
 		<nav
@@ -62,6 +63,7 @@ function Navagation({
 							onSavedClick={onSavedClick}
 							isHambuergerMenuOpen={isHambuergerMenuOpen}
 							headerType={headerType}
+							user={user}
 						/>
 					</>
 				) : (
@@ -107,7 +109,7 @@ function Navagation({
 									}`}
 									onClick={onSignInClick}
 								>
-									{isLoggedIn ? 'elise' : 'Sign in'}
+									{isLoggedIn ? user.username : 'Sign in'}
 								</p>
 								<img
 									className={`navbar__button-img ${

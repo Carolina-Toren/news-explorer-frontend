@@ -1,4 +1,4 @@
-.about__container {
+.about {
 	display: flex;
 	color: #1a1b22;
 	justify-content: center;
@@ -52,7 +52,7 @@
 }
 
 @media screen and (max-width: 745px) {
-	.about__container {
+	.about {
 		flex-direction: column;
 		padding-bottom: 128px;
 		margin-bottom: 0;

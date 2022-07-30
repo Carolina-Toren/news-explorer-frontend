@@ -3,7 +3,7 @@ import aboutPic from '../../images/aboutPic.gif';
 
 function About() {
 	return (
-		<section className='about__container'>
+		<section className='about'>
 			<img className='about__img' src={aboutPic} alt='auther ' />
 			<div className='about__auther'>
 				<h2 className='about__header'>About the auther</h2>

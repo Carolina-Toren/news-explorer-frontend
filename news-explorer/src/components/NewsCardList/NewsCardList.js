@@ -15,7 +15,7 @@ function NewsCardList({
 	cardsToSave,
 }) {
 	return (
-		<section className='cards__container'>
+		<section className='cards'>
 			{listType === 'home' ? (
 				<h2 className='cards__header'>Search results</h2>
 			) : (
@@ -62,7 +62,7 @@ function NewsCardList({
 					  })}
 			</ul>
 			{listType === 'home' && allCards.length !== cardsData.length ? (
-				<button className='grid__btn' onClick={onClick}>
+				<button className='cards__grid-btn' onClick={onClick}>
 					Show more
 				</button>
 			) : (

@@ -16,11 +16,7 @@ function Navagation({
 	user,
 }) {
 	return (
-		<nav
-			className={`navbar__container ${
-				headerType === 'articles' ? 'navbar__container_dark' : ''
-			} `}
-		>
+		<nav className={`navbar ${headerType === 'articles' ? 'navbar_dark' : ''} `}>
 			{!isMobile ? (
 				<h2
 					className={`navbar__header ${

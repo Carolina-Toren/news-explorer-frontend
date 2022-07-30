@@ -11,7 +11,7 @@
 
 .notfound__header {
 	margin: 0 auto 16px;
-	font-family: 'Roboto Slab';
+	font-family: 'Roboto Slab', sans-serif;
 	font-style: normal;
 	font-weight: 400;
 	font-size: 26px;
@@ -20,7 +20,7 @@
 }
 
 .notfound__text {
-	font-family: 'Roboto';
+	font-family: 'Roboto' sans-serif;
 	font-style: normal;
 	font-weight: 400;
 	font-size: 18px;

@@ -8,7 +8,7 @@
 }
 
 .cards__header {
-	font-family: 'Roboto Slab';
+	font-family: 'Roboto Slab', sans-serif;
 	font-style: normal;
 	font-weight: 400;
 	font-size: 40px;
@@ -29,7 +29,7 @@
 .grid__btn {
 	border-radius: 100px;
 	padding: 20px 99px;
-	font-family: 'Roboto';
+	font-family: 'Roboto' sans-serif;
 	font-style: normal;
 	font-weight: 500;
 	font-size: 18px;

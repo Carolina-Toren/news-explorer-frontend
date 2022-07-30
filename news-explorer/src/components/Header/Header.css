@@ -23,7 +23,7 @@
 .header__text {
 	font-size: 18px;
 	line-height: 24px;
-	font-family: 'Roboto';
+	font-family: 'Roboto', sans-serif;
 	margin: 0 auto 88px;
 	max-width: 608px;
 }

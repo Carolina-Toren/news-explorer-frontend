@@ -2,7 +2,7 @@
 	border: none;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 	color: #000;
-	font-family: inter, sans-serif;
+	font-family: 'inter', sans-serif;
 	font-size: 14px;
 	font-style: normal;
 	font-weight: 400;
@@ -22,7 +22,7 @@
 	/* margin: 8px auto 0 36px; */
 	border-radius: 100px;
 	border: none;
-	font-family: 'Roboto';
+	font-family: 'Roboto', sans-serif;
 	font-style: normal;
 	font-weight: 500;
 	font-size: 18px;
@@ -30,7 +30,7 @@
 	padding: 20px 150px;
 }
 .popup__input-error {
-	font-family: 'Inter';
+	font-family: 'Inter', sans-serif;
 	font-style: normal;
 	font-weight: 400;
 	font-size: 12px;
@@ -44,7 +44,7 @@
 	visibility: visible;
 }
 .popup__lable {
-	font-family: 'Inter';
+	font-family: 'Inter', sans-serif;
 	font-style: normal;
 	font-weight: 400;
 	font-size: 12px;
@@ -68,7 +68,7 @@
 	flex-direction: column;
 }
 .popup__server-error {
-	font-family: 'Inter';
+	font-family: 'Inter', sans-serif;
 	font-style: normal;
 	font-weight: 400;
 	font-size: 12px;

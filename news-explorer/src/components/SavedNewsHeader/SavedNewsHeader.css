@@ -3,7 +3,7 @@
 }
 
 .saved__header {
-	font-family: 'Roboto';
+	font-family: 'Roboto', sans-serif;
 	font-style: normal;
 	font-weight: 400;
 	font-size: 18px;
@@ -13,7 +13,7 @@
 }
 
 .saved__sub-header {
-	font-family: 'Roboto Slab';
+	font-family: 'Roboto Slab', sans-serif;
 	font-style: normal;
 	font-weight: 400;
 	font-size: 40px;
@@ -23,7 +23,7 @@
 }
 
 .saved__keywords {
-	font-family: 'Roboto';
+	font-family: 'Roboto', sans-serif;
 	font-style: normal;
 	font-weight: 400;
 	font-size: 18px;

@@ -1,0 +1,131 @@
+.footer {
+	margin: 80px 0 0;
+	display: flex;
+	justify-content: space-between;
+	font-family: 'Roboto', sans-serif;
+}
+
+.footer__copyrigt {
+	list-style: none;
+	justify-self: flex-end;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 22px;
+	margin: 26px auto 28px;
+	color: #b6bcbf;
+}
+
+.footer__list {
+	display: flex;
+	padding: 0;
+	margin: 26px auto 28px;
+}
+
+.footer__list-item {
+	list-style: none;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 24px;
+	text-align: center;
+}
+
+.footer__list-item_social {
+	display: flex;
+}
+
+.footer__list-icon {
+	cursor: pointer;
+}
+.footer__icon_github {
+	background-image: url('../../images/github.svg');
+	width: 24px;
+	margin: 0 26px 0 40px;
+	background-repeat: no-repeat;
+}
+
+.footer__icon_facebook {
+	background-image: url('../../images/fb.svg');
+	width: 24px;
+	background-repeat: no-repeat;
+}
+
+.footer__list-item_info {
+	width: 250px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.footer__list-link {
+	font-style: normal;
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 24px;
+	text-align: center;
+	color: #1a1b22;
+	transition: opacity 0.2s ease-in;
+	display: flex;
+	min-height: 22px;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.footer__list-link:hover {
+	opacity: 0.5;
+}
+
+@media screen and (max-width: 860px) {
+	.footer {
+		margin: 24px 0 0;
+	}
+
+	.footer__copyrigt {
+		margin: 0 28px 18px 40px;
+	}
+
+	.footer__list {
+		margin: 0 11px 0 0;
+	}
+	.footer__icon_github {
+		margin: 0 26px 0 25px;
+	}
+	.footer__icon_facebook {
+		margin-right: 11px;
+	}
+}
+
+@media screen and (max-width: 745px) {
+	.footer {
+		margin: 0;
+		flex-direction: column-reverse;
+	}
+	.footer__copyrigt {
+		margin: 0 auto 22px;
+	}
+	.footer__list {
+		margin: 20px 16px 38px;
+		min-height: 74px;
+		justify-content: space-between;
+	}
+	.footer__list-item_info {
+		flex-direction: column;
+		line-height: 48px;
+	}
+	.footer__list-link {
+		text-align: start;
+		width: 200px;
+	}
+	.footer__list-item_social {
+		justify-content: space-between;
+		width: 74px;
+	}
+
+	.footer__icon_github {
+		margin: 0;
+	}
+
+	.footer__icon_facebook {
+		margin: 0;
+	}
+}

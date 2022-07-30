@@ -1,0 +1,217 @@
+.card {
+	max-width: 400px;
+	border-radius: 16px;
+	width: 100%;
+	background-color: #ffffff;
+	position: relative;
+	margin-bottom: 16px;
+	cursor: pointer;
+}
+
+.card__img {
+	border-radius: 16px 16px 0 0;
+	max-width: 100%;
+}
+
+.card__btn {
+	border: none;
+	background-color: #ffffff;
+	cursor: pointer;
+	position: absolute;
+	top: 24px;
+	right: 24px;
+	border-radius: 8px;
+	visibility: hidden;
+	font-family: 'Roboto', sans-serif;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 24px;
+
+	text-align: center;
+
+	color: #000000;
+}
+.card__btn_ishover {
+	padding: 11px 20px;
+	right: 69px;
+	width: fit-content;
+	visibility: hidden;
+	height: 40px;
+}
+
+.card__btn_visible {
+	visibility: visible;
+}
+
+.card__btn_unmarked:hover {
+	background-image: url('../../images/hover.svg');
+}
+
+.card__btn_unmarked {
+	background-image: url('../../images/unmarked.svg');
+	width: 40px;
+	height: 40px;
+}
+
+.card__btn_marked {
+	background-image: url('../../images/marked.svg');
+	width: 40px;
+	height: 40px;
+}
+
+.card__btn_delete {
+	background-image: url('../../images/delete.svg');
+	width: 40px;
+	height: 40px;
+}
+
+.card__btn_delete:hover {
+	background-image: url('../../images/deleteHover.svg');
+}
+
+.card__btn_keyword {
+	left: 24px;
+	width: fit-content;
+	max-width: 150px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	height: 40px;
+	padding: 8px 22px;
+}
+
+.card__date {
+	font-family: 'Source Sans Pro', sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 24px;
+	align-items: center;
+	color: #b6bcbf;
+	margin-left: 24px;
+	margin-top: 17px;
+}
+
+.card__text-container {
+	font-style: normal;
+	color: #1a1b22;
+	margin-left: 24px;
+}
+.card__text-header {
+	font-family: 'Roboto Slab', sans-serif;
+	font-size: 26px;
+	line-height: 30px;
+	font-weight: 400;
+	max-width: 352px;
+	margin: 12px 0 16px;
+}
+
+.card__text {
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+	line-height: 22px;
+	max-width: 352px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	max-height: 110px;
+	display: -webkit-box;
+	-webkit-line-clamp: 4;
+	-webkit-box-orient: vertical;
+}
+
+.card__text-source {
+	font-family: 'Roboto Slab', sans-serif;
+	font-style: normal;
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 20px;
+	letter-spacing: 0.4px;
+	text-transform: uppercase;
+	color: #b6bcbf;
+}
+
+@media screen and (max-width: 880px) {
+	.card {
+		max-width: 224px;
+	}
+	.card__btn {
+		top: 8px;
+		right: 8px;
+	}
+	.card__btn_keyword {
+		left: 8px;
+		padding: 8px 20px;
+	}
+	.card__date {
+		margin-left: 15px;
+		margin-top: 16px;
+	}
+
+	.card__text-container {
+		margin-left: 16px;
+	}
+
+	.card__text-header {
+		font-size: 22px;
+		line-height: 24px;
+		margin-bottom: 10px;
+		max-width: 192px;
+	}
+
+	.card__text {
+		max-width: 192px;
+		max-height: 88px;
+		margin: 10px 0 12px;
+	}
+
+	.card__text-source {
+		max-width: 192px;
+		margin: 0 0 12px;
+	}
+}
+
+@media screen and (max-width: 745px) {
+	.card {
+		max-width: 288px;
+	}
+	.card__btn {
+		top: 16px;
+		right: 16px;
+	}
+	.card__btn_ishover.card__btn_visible {
+		visibility: hidden;
+	}
+
+	.card__date {
+		max-width: 256px;
+		margin: 16px auto 10px;
+	}
+
+	.card__text-container {
+		max-width: 256px;
+		display: flex;
+		flex-direction: column;
+		box-sizing: border-box;
+		margin: 0 auto 16px;
+	}
+	.card__text-header {
+		margin: 0;
+		max-width: 256px;
+		margin-bottom: 14px;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		overflow: hidden;
+		-webkit-box-orient: vertical;
+	}
+
+	.card__text {
+		margin: 0 auto 8px;
+		max-width: 256px;
+	}
+
+	.card__text-source {
+		margin: 0;
+		max-width: 256px;
+	}
+}

@@ -1,0 +1,136 @@
+.popup {
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	left: 0;
+	margin: auto;
+	min-height: 100%;
+	opacity: 0;
+	position: fixed;
+	top: 0;
+	transition: visibility 0s linear 0.3s, opacity 0.3s;
+	visibility: hidden;
+	width: 100%;
+}
+.popup_visible {
+	visibility: visible;
+	opacity: 1;
+	transition: visibility 0s linear 0s, opacity 300ms;
+}
+
+.popup__window {
+	background-color: #fff;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	max-width: 430px;
+	padding: 0;
+	position: relative;
+	width: 100%;
+}
+
+.popup__close-btn {
+	background-color: transparent;
+	background-image: url('../../images/closeBTN.svg');
+	background-position: 50%;
+	background-size: auto;
+	border: none;
+	color: #fff;
+	cursor: pointer;
+	height: 40px;
+	padding: 0;
+	position: absolute;
+	right: -40px;
+	top: -40px;
+	width: 40px;
+}
+
+.popup__header {
+	font-family: 'Roboto', sans-serif;
+	font-style: normal;
+	font-weight: 900;
+	font-size: 24px;
+	line-height: 28px;
+	color: #1a1b22;
+	margin: 34px auto 22px 36px;
+}
+
+.popup__link-container {
+	border: none;
+	background-color: transparent;
+	margin: 16px auto 0;
+	font-family: 'Inter', sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 17px;
+	text-align: center;
+	width: 100%;
+	display: flex;
+	padding: 0;
+	justify-content: center;
+}
+
+.popup__link {
+	margin-bottom: 28px;
+	font-family: 'Inter', sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 17px;
+	cursor: pointer;
+	color: #2f71e5;
+}
+
+.popup__link-text {
+	text-align: center;
+	margin-bottom: 28px;
+	font-family: 'Inter', sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 17px;
+	margin: 0 5px 0 0;
+}
+
+.popup_registration-text {
+	font-family: 'Roboto', sans-serif;
+	font-style: normal;
+	font-weight: 900;
+	font-size: 24px;
+	line-height: 28px;
+	margin: 43px 79px 14px 36px;
+}
+
+.popup_registration-link {
+	font-family: 'Inter', sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 22px;
+	cursor: pointer;
+	color: #2f71e5;
+	margin-left: 36px;
+}
+
+@media screen and (max-width: 745px) {
+	.popup__close-btn {
+		width: 26px;
+		height: 26px;
+		right: 0;
+	}
+
+	.popup__window {
+		align-self: flex-start;
+		margin-top: 60px;
+	}
+
+	@media screen and (max-width: 460px) {
+		.popup__window {
+			max-width: 100%;
+			align-self: flex-start;
+			margin-top: 60px;
+		}
+	}
+}

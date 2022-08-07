@@ -36,21 +36,20 @@ function HamburgerPopup({
 					</button>
 					<button
 						className='navbar__button navbar__button-auth navbar__hamburger-auth navbar__button_visible'
-						onClick={onSignInClick}
+						onClick={!isLoggedIn ? onSignInClick : onLogoutClick}
 					>
 						<p
 							className={`navbar__button navbar__button-text navbar__button_visible ${
 								isLoggedIn ? 'navbar__button-text_logged ' : ''
 							}`}
 						>
-							{isLoggedIn ? user.username : 'Sign in'}
+							{isLoggedIn ? user.name : 'Sign in'}
 						</p>
 						<img
 							className={`navbar__button-img ${
 								isLoggedIn ? 'navbar__button-img_visible' : ''
 							}`}
 							src={logoutPic}
-							onClick={onLogoutClick}
 							alt={'logout button'}
 						/>
 					</button>

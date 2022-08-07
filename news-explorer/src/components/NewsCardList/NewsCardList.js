@@ -1,6 +1,7 @@
 import './NewsCardList.css';
 import NewsCard from '../NewsCard/NewsCard';
 // import NotFound from '../NotFound/NotFound';
+import Preloader from '../Preloader/Preloader';
 
 function NewsCardList({
 	savedCardsData,
@@ -13,62 +14,80 @@ function NewsCardList({
 	onClick,
 	setCardsToSave,
 	cardsToSave,
+	isLoading,
+	onSaveBtnClick,
+	onUsaveBtnClick,
 }) {
 	return (
-		<section className='cards'>
-			{listType === 'home' ? (
-				<h2 className='cards__header'>Search results</h2>
+		<>
+			{!isLoading ? (
+				<section className='cards'>
+					{listType === 'home' && !isLoading ? (
+						<h2 className='cards__header'>Search results</h2>
+					) : (
+						''
+					)}
+					<ul className='cards__grid'>
+						{listType === 'home'
+							? cardsData.map((card) => {
+									return (
+										<NewsCard
+											key={card.id}
+											imgSrc={card.urlToImage}
+											cardDate={card.publishedAt}
+											cardTitle={card.title}
+											cardSubtitle={card.description}
+											cardCaption={card.source.name}
+											cardKeyWord={card.keyword}
+											cardLink={card.url}
+											setIsCardHover={setIsCardHover}
+											isLoggedIn={isLoggedIn}
+											card={card}
+											id={card.id}
+											listType={listType}
+											isCardsHover={isCardsHover}
+											onSaveBtnClick={onSaveBtnClick}
+											onUsaveBtnClick={onUsaveBtnClick}
+											savedCardsData={savedCardsData}
+										/>
+									);
+							  })
+							: savedCardsData.map((card) => {
+									return (
+										<NewsCard
+											id={card._id}
+											key={card._id}
+											imgSrc={card.image}
+											cardTitle={card.title}
+											cardSubtitle={card.text}
+											cardCaption={card.source}
+											cardKeyWord={card.keyword}
+											cardLink={card.link}
+											cardDate={card.date}
+											setIsCardHover={setIsCardHover}
+											isLoggedIn={isLoggedIn}
+											cardsToSave={cardsToSave}
+											setCardsToSave={setCardsToSave}
+											card={card}
+											listType={listType}
+											isCardsHover={isCardsHover}
+											onUsaveBtnClick={onUsaveBtnClick}
+										/>
+									);
+							  })}
+					</ul>
+					{listType === 'home' && allCards.length !== cardsData.length ? (
+						<button className='cards__grid-btn' onClick={onClick}>
+							Show more
+						</button>
+					) : (
+						''
+					)}
+				</section>
 			) : (
-				''
+				<Preloader />
 			)}
-			<ul className='cards__grid'>
-				{listType === 'home'
-					? cardsData.map((card) => {
-							return (
-								<NewsCard
-									imgSrc={card.img}
-									cardDate={card.date}
-									cardTitle={card.title}
-									cardSubtitle={card.subtitle}
-									cardCaption={card.caption}
-									cardKeyWord={card.keyword}
-									setIsCardHover={setIsCardHover}
-									isLoggedIn={isLoggedIn}
-									card={card}
-									listType={listType}
-									key={card.id}
-									isCardsHover={isCardsHover}
-								/>
-							);
-					  })
-					: savedCardsData.map((card) => {
-							return (
-								<NewsCard
-									imgSrc={card.img}
-									cardTitle={card.title}
-									cardSubtitle={card.subtitle}
-									cardCaption={card.caption}
-									cardKeyWord={card.keyword}
-									setIsCardHover={setIsCardHover}
-									isLoggedIn={isLoggedIn}
-									cardsToSave={cardsToSave}
-									setCardsToSave={setCardsToSave}
-									card={card}
-									listType={listType}
-									key={card.id}
-									isCardsHover={isCardsHover}
-								/>
-							);
-					  })}
-			</ul>
-			{listType === 'home' && allCards.length !== cardsData.length ? (
-				<button className='cards__grid-btn' onClick={onClick}>
-					Show more
-				</button>
-			) : (
-				''
-			)}
-		</section>
+		</>
 	);
 }
 

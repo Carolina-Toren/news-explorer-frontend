@@ -1,6 +1,6 @@
 import {Route, Routes, useNavigate} from 'react-router-dom';
 import React, {useState, useEffect} from 'react';
-import {testData} from '../../utils/data';
+import uuid from 'react-uuid';
 import Header from '../Header/Header';
 import {CurrentUserContext} from '../../contexts/UserInfoContext';
 import Main from '../Main/Main';
@@ -8,35 +8,60 @@ import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import SavedNews from '../SavedNews/SavedNews';
 import './App.css';
-// import Preloader from '../Preloader/Preloader';
 import Popup from '../Popup/Popup';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
-import About from '../About/About';
+import NewsApi from '../../utils/newsApi';
+import mainApi from '../../utils/mainApi';
+import * as auth from '../../utils/auth';
 
 function App() {
-	const [currentUser, setCurenUser] = useState({
-		username: 'Elise',
-		email: 'test@test.com',
-		_id: '2',
-	});
+	const [username, setUsername] = useState('');
+	const [userEmail, setUserEmaill] = useState('');
+	const [userPassword, setUserPassword] = useState('');
+	const [userId, setUserId] = useState('');
+	const [currentUser, setCurenUser] = useState({name: '', _id: ''});
+	const [token, setToken] = useState(localStorage.getItem('jwt'));
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [isPopupSignInOpen, setIsPopupSignInOpen] = useState(false);
 	const [isPopupSignUpOpen, setIsPopupSignUpOpen] = useState(false);
 	const [isInfoTooltipOpen, setIsInfoTooltip] = useState(false);
 	const [isHambuergerMenuOpen, setIsHamburgerMenuOpen] = useState(false);
-	const [allCards, setAllCards] = useState(testData);
-	const [count, setCount] = useState(6);
-	const [savedCardsData, setSaveAllCardsData] = useState(testData);
+	const [allCards, setAllCards] = useState([]);
+	const [count, setCount] = useState(2);
+	const [savedCardsData, setSaveCardsData] = useState([]);
 	const [cardsData, setCardsData] = useState([]);
 	const [cardsToSave, setCardsToSave] = useState({});
 	const [isCardsHover, setIsCardHover] = useState(false);
 	const [isRegistrationSucceeded, setIsRegistrationSucceeded] = useState(false);
-	const [isMobile, setIsMobile] = React.useState(false);
+	const [isMobile, setIsMobile] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
+	const [isNewsSerachOpen, SetIsNewsSearchOpen] = useState(false);
+	const [errorMessage, setErrorMessage] = useState('');
+	// const [isPopupWithFormOpen, setIsPopupWithFormOpen] = useState(false);
+	const [cardKeyWord, setCardKeyword] = useState(
+		localStorage.getItem('lastKeyWord') || ''
+	);
 
 	const navigate = useNavigate();
 
+	useEffect(() => {
+		if (token) {
+			mainApi
+				.getUserInfo()
+				.then((res) => {
+					if (res) {
+						console.log(res.name, res._id);
+						setCurenUser({name: res.name, _id: res._id});
+						setIsLoggedIn(true);
+					}
+				})
+				.catch(console.log);
+		}
+	}, [token]);
+
 	function handleSignInClick() {
 		setIsPopupSignInOpen(true);
+		setIsInfoTooltip(false);
 		setIsHamburgerMenuOpen(false);
 	}
 	function handleSignUpClick() {
@@ -56,7 +81,12 @@ function App() {
 		setIsInfoTooltip(false);
 	}
 	function handleLogout() {
+		if (isHambuergerMenuOpen) {
+			setIsHamburgerMenuOpen(false);
+		}
+		localStorage.removeItem('jwt');
 		setIsLoggedIn(false);
+		setToken('');
 	}
 
 	function handleSavedRoute() {
@@ -92,33 +122,117 @@ function App() {
 		handleScreenResize();
 	}, []);
 
-	function handleDisplayCards() {
+	//recent search resault
+	React.useEffect(() => {
+		if (!allCards) {
+			setCardsData([]);
+			return;
+		}
 		let cardsToRender = [];
-		for (let i = 0; i < count; i++) {
-			if (testData[i]) {
-				cardsToRender.push(testData[i]);
+		let card;
+
+		for (let i = 0; i <= count; i++) {
+			if (allCards[i]) {
+				card = {...allCards[i], id: uuid()};
+				cardsToRender.push(card);
 			}
 		}
-		setCount(count + 3);
 		setCardsData(cardsToRender);
+	}, [allCards, count]);
+
+	function handleDisplayCards() {
+		setCount(count + 3);
 	}
 
-	useEffect(() => {
-		setAllCards(testData);
-		if (cardsData === []) return;
-		function renderCards() {
-			let cardsToRender = [];
-			for (let i = 0; i < 3; i++) {
-				if (!testData[i]) return;
-				cardsToRender.push(testData[i]);
-			}
-			setCardsData(cardsToRender);
-		}
-		renderCards();
-	}, []);
+	function handleSearchSubmit(keyword) {
+		SetIsNewsSearchOpen(true);
+		setIsLoading(true);
+		setCardKeyword(keyword);
+		NewsApi.getArticles(keyword)
+			.then((res) => {
+				if (res.articles.length !== 0) {
+					setAllCards(res.articles);
+
+					localStorage.setItem('cards', JSON.stringify(res.articles));
+				} else {
+					localStorage.removeItem('cards');
+				}
+				setIsLoading(false);
+				SetIsNewsSearchOpen(true);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	}
 
 	function handleHamburgerClick() {
 		setIsHamburgerMenuOpen(!isHambuergerMenuOpen);
+	}
+	///get saved articles when user is logged
+	useEffect(() => {
+		if (isLoggedIn) {
+			mainApi
+				.getSavedArticles()
+				.then((res) => {
+					setSaveCardsData(res);
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		}
+	}, [isLoggedIn]);
+
+	function handleSaveClick(card) {
+		mainApi.markCard(card, cardKeyWord).then((res) => {
+			setSaveCardsData([res, ...savedCardsData]);
+		});
+	}
+
+	function handleUnSaveClick(id) {
+		mainApi
+			.unmarkCard(id)
+			.then(() => {
+				setSaveCardsData(savedCardsData.filter((item) => item._id !== id));
+			})
+			.catch(console.log);
+	}
+
+	function handlePopupSubmit(e) {
+		e.preventDefault();
+		if (isPopupSignInOpen) {
+			auth
+				.authorize(userEmail, userPassword)
+				.then((res) => {
+					if (res) {
+						localStorage.setItem('jwt', res);
+						setToken(res);
+						setErrorMessage('');
+						setIsLoggedIn(true);
+						setIsPopupSignInOpen(false);
+					} else {
+						throw 'Incorrect email or password';
+					}
+				})
+				.catch((err) => {
+					setErrorMessage(err);
+					return;
+				});
+		} else if (isPopupSignUpOpen) {
+			auth
+				.register(userEmail, username, userPassword)
+				.then((res) => {
+					setIsRegistrationSucceeded(true);
+					setUserEmaill('');
+					setUserPassword('');
+					setUsername('');
+					setIsPopupSignUpOpen(false);
+					setIsInfoTooltip(true);
+				})
+				.catch((err) => {
+					console.log(err);
+					setIsInfoTooltip(true);
+				});
+		}
 	}
 
 	return (
@@ -139,6 +253,8 @@ function App() {
 									isMobile={isMobile}
 									isHambuergerMenuOpen={isHambuergerMenuOpen}
 									user={currentUser}
+									username={username}
+									onSearchSubmit={handleSearchSubmit}
 								/>
 								<Main
 									isLoggedIn={isLoggedIn}
@@ -149,8 +265,34 @@ function App() {
 									setAllCards={setAllCards}
 									setCardsToSave={setCardsToSave}
 									cardsToSave={cardsToSave}
+									isLoading={isLoading}
+									isNewsSerachOpen={isNewsSerachOpen}
+									onSaveBtnClick={handleSaveClick}
+									onUsaveBtnClick={handleUnSaveClick}
 								/>
-								<About />
+								<Popup
+									isSignInOpen={isPopupSignInOpen}
+									isSignUpOpen={isPopupSignUpOpen}
+									onSignUpClick={handlePopupSwitch}
+									onCloseClick={closeAllPopups}
+									isInfoTooltipOpen={isInfoTooltipOpen}
+									status={isRegistrationSucceeded}
+									// onSubmit={handleSignInSubmit}
+									onSubmit={handlePopupSubmit}
+									setUserEmail={setUserEmaill}
+									setUserPassword={setUserPassword}
+									setUsername={setUsername}
+									onSearchSubmit={handleSearchSubmit}
+									errorMessage={errorMessage}
+								/>
+								<InfoTooltip
+									onCloseClick={closeAllPopups}
+									name={'registration'}
+									onSignInClick={handleSignInClick}
+									onSignUpClick={handleSignUpClick}
+									status={isRegistrationSucceeded}
+									isOpen={isInfoTooltipOpen}
+								/>
 							</>
 						}
 					/>
@@ -175,6 +317,7 @@ function App() {
 											isMobile={isMobile}
 											isHambuergerMenuOpen={isHambuergerMenuOpen}
 											user={currentUser}
+											onUsaveBtnClick={handleUnSaveClick}
 										/>
 									</>
 								}
@@ -184,22 +327,6 @@ function App() {
 					/>
 				</Routes>
 				<Footer />
-
-				<Popup
-					isSignInOpen={isPopupSignInOpen}
-					isSignUpOpen={isPopupSignUpOpen}
-					onSignUpClick={handlePopupSwitch}
-					onCloseClick={closeAllPopups}
-					isInfoTooltipOpen={isInfoTooltipOpen}
-				/>
-				<InfoTooltip
-					onCloseClick={closeAllPopups}
-					name={'registration'}
-					onSignInClick={handleSignInClick}
-					onSignUpClick={handleSignUpClick}
-					status={isRegistrationSucceeded}
-					isOpen={isInfoTooltipOpen}
-				/>
 			</div>
 		</CurrentUserContext.Provider>
 	);

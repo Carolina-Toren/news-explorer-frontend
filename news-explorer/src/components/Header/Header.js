@@ -12,6 +12,9 @@ function Header({
 	isHambuergerMenuOpen,
 	isMobile,
 	user,
+	onSearchSubmit,
+	searchInputValue,
+	username,
 }) {
 	return (
 		<header className='header'>
@@ -26,12 +29,17 @@ function Header({
 				isHambuergerMenuOpen={isHambuergerMenuOpen}
 				isMobile={isMobile}
 				user={user}
+				username={username}
 			/>
 			<h1 className='header__header'>What's going on in the world?</h1>
 			<p className='header__text'>
 				Find the latest news on any topic and save them in your personal account.
 			</p>
-			<SearchForm />
+
+			<SearchForm
+				onSearchSubmit={onSearchSubmit}
+				searchInputValue={searchInputValue}
+			/>
 		</header>
 	);
 }

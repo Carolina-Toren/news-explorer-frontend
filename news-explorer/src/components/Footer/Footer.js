@@ -15,7 +15,7 @@ function Footer() {
 						rel='noreferrer'
 						target='_blank'
 					>
-						Parcticum by Yandex
+						Practicum by Yandex
 					</a>
 				</li>
 

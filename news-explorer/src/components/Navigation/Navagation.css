@@ -90,6 +90,7 @@
 	margin-top: 19px;
 	margin-right: 0;
 	transition: opacity 0.5s;
+	cursor: initial;
 }
 .navbar__button-auth:hover {
 	opacity: 0.6;

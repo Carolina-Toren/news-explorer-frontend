@@ -18,6 +18,7 @@ function SavedNews({
 	onHamburgerMenuClick,
 	isHambuergerMenuOpen,
 	isMobile,
+	onUsaveBtnClick,
 }) {
 	return (
 		<section className='saved__container'>
@@ -45,6 +46,7 @@ function SavedNews({
 				isLoggedIn={isLoggedIn}
 				setCardsToSave={setCardsToSave}
 				cardsToSave={cardsToSave}
+				onUsaveBtnClick={onUsaveBtnClick}
 			/>
 		</section>
 	);

@@ -14,6 +14,7 @@ function Navagation({
 	isHambuergerMenuOpen,
 	isMobile,
 	user,
+	username,
 }) {
 	return (
 		<nav className={`navbar ${headerType === 'articles' ? 'navbar_dark' : ''} `}>
@@ -60,6 +61,7 @@ function Navagation({
 							isHambuergerMenuOpen={isHambuergerMenuOpen}
 							headerType={headerType}
 							user={user}
+							username={username}
 						/>
 					</>
 				) : (
@@ -105,7 +107,7 @@ function Navagation({
 									}`}
 									onClick={onSignInClick}
 								>
-									{isLoggedIn ? user.username : 'Sign in'}
+									{isLoggedIn ? user.name : 'Sign in'}
 								</p>
 								<img
 									className={`navbar__button-img ${

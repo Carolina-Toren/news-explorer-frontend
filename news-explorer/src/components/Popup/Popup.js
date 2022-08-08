@@ -1,6 +1,6 @@
 import './Popup.css';
-
-import PopupWithForm from '../PopupWithForm/PopupWithForm';
+import Register from '../Register/Register';
+import Login from '../Login/Login';
 
 function Popup({
 	isSignInOpen,
@@ -8,6 +8,12 @@ function Popup({
 	onCloseClick,
 	onSignUpClick,
 	isInfoTooltipOpen,
+	onSignupSubmit,
+	onSubmit,
+	setUsername,
+	setUserEmail,
+	setUserPassword,
+	errorMessage,
 }) {
 	const PopupType = isSignInOpen ? 'Sign in' : 'Sign up';
 
@@ -23,7 +29,30 @@ function Popup({
 					onClick={onCloseClick}
 				></button>
 				<h2 className='popup__header'>{PopupType}</h2>
-				<PopupWithForm onSignUpClick={onSignUpClick} isSignUpOpen={isSignUpOpen} />
+
+				{isSignUpOpen ? (
+					<Register
+						onSignUpClick={onSignUpClick}
+						isSignUpOpen={isSignUpOpen}
+						isSignInOpen={isSignInOpen}
+						isInfoTooltipOpen={isInfoTooltipOpen}
+						onSubmit={onSubmit}
+						setUsername={setUsername}
+						setUserEmail={setUserEmail}
+						setUserPassword={setUserPassword}
+					/>
+				) : (
+					<Login
+						onSignUpClick={onSignUpClick}
+						isSignUpOpen={isSignUpOpen}
+						isSignInOpen={isSignInOpen}
+						isInfoTooltipOpen={isInfoTooltipOpen}
+						onSubmit={onSubmit}
+						setUserEmail={setUserEmail}
+						setUserPassword={setUserPassword}
+						errorMessage={errorMessage}
+					/>
+				)}
 				<button className='popup__link-container'>
 					<p className='popup__link-text'>or </p>
 					<span className='popup__link' onClick={onSignUpClick}>

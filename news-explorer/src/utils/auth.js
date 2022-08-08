@@ -41,8 +41,5 @@ export function authorize(email, password) {
 			} else {
 				throw new Error('the user with the specified email not found');
 			}
-		})
-		.catch((err) => {
-			console.log(err);
 		});
 }

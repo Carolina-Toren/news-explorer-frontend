@@ -18,7 +18,6 @@ function App() {
 	const [username, setUsername] = useState('');
 	const [userEmail, setUserEmaill] = useState('');
 	const [userPassword, setUserPassword] = useState('');
-	const [userId, setUserId] = useState('');
 	const [currentUser, setCurenUser] = useState({name: '', _id: ''});
 	const [token, setToken] = useState(localStorage.getItem('jwt'));
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -50,7 +49,6 @@ function App() {
 				.getUserInfo()
 				.then((res) => {
 					if (res) {
-						console.log(res.name, res._id);
 						setCurenUser({name: res.name, _id: res._id});
 						setIsLoggedIn(true);
 					}
@@ -183,9 +181,25 @@ function App() {
 	}, [isLoggedIn]);
 
 	function handleSaveClick(card) {
-		mainApi.markCard(card, cardKeyWord).then((res) => {
-			setSaveCardsData([res, ...savedCardsData]);
-		});
+		let i = 0;
+		let isSaved = false;
+		if (savedCardsData) {
+			while (i < savedCardsData.length) {
+				// check if article already exists in saved section
+				if (savedCardsData[i].link === card.cardLink) {
+					isSaved = true;
+				}
+				i++;
+			}
+		}
+		if (!isSaved || !savedCardsData) {
+			mainApi
+				.markCard(card, cardKeyWord)
+				.then((res) => {
+					setSaveCardsData([res, ...savedCardsData]);
+				})
+				.catch(console.log);
+		}
 	}
 
 	function handleUnSaveClick(id) {
@@ -196,6 +210,19 @@ function App() {
 			})
 			.catch(console.log);
 	}
+
+	//Close popups via Escape key
+	useEffect(() => {
+		const closeByEscape = (e) => {
+			if (e.key === 'Escape') {
+				closeAllPopups();
+			}
+		};
+
+		document.addEventListener('keydown', closeByEscape);
+
+		return () => document.removeEventListener('keydown', closeByEscape);
+	}, []);
 
 	function handlePopupSubmit(e) {
 		e.preventDefault();
@@ -210,7 +237,7 @@ function App() {
 						setIsLoggedIn(true);
 						setIsPopupSignInOpen(false);
 					} else {
-						throw 'Incorrect email or password';
+						throw Error('Incorrect email or password');
 					}
 				})
 				.catch((err) => {
@@ -226,10 +253,11 @@ function App() {
 					setUserPassword('');
 					setUsername('');
 					setIsPopupSignUpOpen(false);
-					setIsInfoTooltip(true);
 				})
 				.catch((err) => {
 					console.log(err);
+				})
+				.finally(() => {
 					setIsInfoTooltip(true);
 				});
 		}
@@ -269,6 +297,7 @@ function App() {
 									isNewsSerachOpen={isNewsSerachOpen}
 									onSaveBtnClick={handleSaveClick}
 									onUsaveBtnClick={handleUnSaveClick}
+									onNotLoggedInClick={handleSignInClick}
 								/>
 								<Popup
 									isSignInOpen={isPopupSignInOpen}

@@ -37,6 +37,6 @@ const month = date.getMonth() + 1;
 const day = date.getDate();
 const year = date.getFullYear();
 
-const fromDate = day + '/' + month + '/' + year;
+const fromDate = month + '/' + day + '/' + year;
 
 export default new NewsApi(BASE_URL, {}, fromDate, toDate);

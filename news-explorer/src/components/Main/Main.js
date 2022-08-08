@@ -14,6 +14,7 @@ function Main({
 	isNewsSerachOpen,
 	onSaveBtnClick,
 	onUsaveBtnClick,
+	onNotLoggedInClick,
 }) {
 	return (
 		<>
@@ -30,6 +31,7 @@ function Main({
 					isLoading={isLoading}
 					onSaveBtnClick={onSaveBtnClick}
 					onUsaveBtnClick={onUsaveBtnClick}
+					onNotLoggedInClick={onNotLoggedInClick}
 				/>
 			) : (
 				''

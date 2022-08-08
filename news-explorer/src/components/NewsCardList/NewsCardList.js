@@ -17,6 +17,7 @@ function NewsCardList({
 	isLoading,
 	onSaveBtnClick,
 	onUsaveBtnClick,
+	onNotLoggedInClick,
 }) {
 	return (
 		<>
@@ -49,6 +50,7 @@ function NewsCardList({
 											onSaveBtnClick={onSaveBtnClick}
 											onUsaveBtnClick={onUsaveBtnClick}
 											savedCardsData={savedCardsData}
+											onNotLoggedInClick={onNotLoggedInClick}
 										/>
 									);
 							  })

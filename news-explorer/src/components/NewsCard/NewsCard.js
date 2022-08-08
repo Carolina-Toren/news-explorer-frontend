@@ -15,6 +15,7 @@ function NewsCard({
 	onSaveBtnClick,
 	onUsaveBtnClick,
 	savedCardsData,
+	onNotLoggedInClick,
 }) {
 	const message = useRef();
 
@@ -49,7 +50,10 @@ function NewsCard({
 				return;
 			}
 		} else {
-			onUsaveBtnClick(id);
+			if (listType === 'saved') onUsaveBtnClick(id);
+			else {
+				onNotLoggedInClick();
+			}
 		}
 	}
 

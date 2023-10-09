@@ -36,7 +36,7 @@ function Main({
 			) : (
 				''
 			)}
-			<About />
+			// <About />
 		</>
 	);
 }
